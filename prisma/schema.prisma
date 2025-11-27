@@ -15,6 +15,18 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  PAID
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
 model User {
   id            String    @id
   name          String
@@ -25,6 +37,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
+  reservations  Reservation[]
 
   @@unique([email])
   @@map("user")
@@ -76,4 +89,55 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+}
+
+model Court {
+  id          Int           @id
+  name        String
+  location    String
+  reservations Reservation[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@map("court")
+}
+
+model TimeSlot {
+  id          Int           @id @default(autoincrement())
+  startTime   String 
+  endTime     String
+  reservations Reservation[]
+
+  @@map("timeSlot")
+}
+
+model Reservation {
+  id          String            @id
+  user        User              @relation(fields: [userId], references: [id])
+  userId      String
+  court       Court             @relation(fields: [courtId], references: [id])
+  courtId     Int
+  timeSlot    TimeSlot          @relation(fields: [timeSlotId], references: [id])
+  timeSlotId  Int
+  date        DateTime
+  status      ReservationStatus @default(PENDING)
+  payment     Payment?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([userId])
+  @@map("reservation")  
+}
+
+model Payment {
+  id             String        @id
+  reservation    Reservation   @relation(fields: [reservationId], references: [id])
+  reservationId  String        @unique
+  amount         Float
+  status         PaymentStatus @default(PENDING)
+  paymentGatewayId String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  
+  @@map("payment")  
 }
