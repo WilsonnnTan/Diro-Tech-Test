@@ -8,8 +8,12 @@
     "start": "next start",
     "lint": "eslint"
   },
+  "prisma": {
+    "seed": "tsx ./src/lib/db/seed/index.seed.ts"
+  },
   "dependencies": {
     "@prisma/client": "^6.19.0",
+    "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-slot": "^1.2.4",
     "better-auth": "^1.4.3",
     "class-variance-authority": "^0.7.1",
