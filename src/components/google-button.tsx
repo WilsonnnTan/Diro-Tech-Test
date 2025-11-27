@@ -16,7 +16,7 @@ export function GoogleButton() {
              * A URL to redirect after the user authenticates with the provider
              * @default "/"
              */
-            callbackURL: "/",
+            callbackURL: "/dashboard",
             /**
              * A URL to redirect if an error occurs during the sign in process
              */
@@ -24,7 +24,7 @@ export function GoogleButton() {
             /**
              * A URL to redirect if the user is newly registered
              */
-            newUserCallbackURL: "/welcome",
+            newUserCallbackURL: "/dashboard",
             /**
              * disable the automatic redirect to the provider.
              * @default false
