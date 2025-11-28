@@ -28,17 +28,16 @@ export async function GET(req: NextRequest, ctx: { params: Promise<{ id: string 
     return NextResponse.json(
       {
         success: true,
-        message: "Reservation Detail found",
         data: reservationDetail
       },
       { status: 200 }
     );
 
-  } catch(err) {
+  } catch(err: any) {
     return NextResponse.json(
       {
         success: false,
-        message: "Internal Server Error",
+        message: err.message || "Internal Server Error" ,
       },
       { status: 500 }
     );

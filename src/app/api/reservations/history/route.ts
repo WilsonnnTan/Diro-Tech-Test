@@ -23,11 +23,11 @@ export async function GET(req: NextRequest) {
       { status: 200 }
     );
 
-  } catch(err) {
+  } catch(err: any) {
     return NextResponse.json(
       {
         success: false,
-        message: "Internal Server Error",
+        message: err.message || "Internal Server Error" ,
       },
       { status: 500 }
     );
