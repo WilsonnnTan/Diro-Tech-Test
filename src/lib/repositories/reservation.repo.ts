@@ -15,10 +15,14 @@ export const ReservationRepository = {
     });
   },
 
-  async findAllReservationByUserId(userId: string): Promise<Reservation[]> {
+  async findAllReservationByUserId(userId: string): Promise<(Reservation & { court: Court, timeSlot: TimeSlot })[]> {
     return prisma.reservation.findMany({
       where: {
         userId: userId,
+      },
+      include: {
+        court: true,
+        timeSlot: true
       }
     });
   },
