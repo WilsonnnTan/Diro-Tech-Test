@@ -1,17 +1,17 @@
 export interface CourtData {
-  id?: number;
+  id: number;
   name: string;
   location: string;
 }
 
 export interface TimeSlotData {
-  id?: number;
+  id: number;
   startTime: string; // e.g., "08:00"
   endTime: string;   // e.g., "09:00"
 }
 
 export interface ReservationData {
-  id?: string;
+  id: string;
   userId: string;      // reference to User
   courtId: number;     // reference to Court
   timeSlotId: number;  // reference to TimeSlot

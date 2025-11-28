@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSession } from "@/lib/auth/auth-client";
 import { TimeSlotService } from "@/lib/services/timeslot.service";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth/auth";
 
 export async function GET(req: NextRequest,  ctx: { params: Promise<{ courtId: number, date: string }> }) {
-  const { data: session } = await getSession();
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
   if (!session?.user.id) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });

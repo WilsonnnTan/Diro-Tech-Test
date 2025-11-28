@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSession } from "@/lib/auth/auth-client";
 import { ReservationService } from "@/lib/services/reservation.service";
 import { ReservationSchema } from "@/lib/dto/reservation.schema";
+import { auth } from "@/lib/auth/auth";
+import { headers } from "next/headers";
 
 export async function POST(req: NextRequest) {
-  const { data: session } = await getSession();
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
   if (!session?.user.id) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
