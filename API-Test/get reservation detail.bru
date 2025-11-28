@@ -1,0 +1,20 @@
+meta {
+  name: get reservation detail
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://localhost:3000/api/reservations/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 319057dc-ab76-46cf-a9b6-c223b52659f0
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
