@@ -33,7 +33,10 @@ export const ReservationSchema = z.object({
   userId: z.uuid(),
   courtId: z.number(),
   timeSlotId: z.number(),
-  date: z.string(), // ISO string
+  date: z.string().refine(
+    (val) => !isNaN(Date.parse(val)),
+    { message: "Date must be a valid ISO 8601 string" }
+  ),
   status: ReservationStatusEnum.optional(),
   payment: PaymentSchema.optional(),
 });

@@ -1,26 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth/auth-client";
 import { ReservationService } from "@/lib/services/reservation.service";
+import { ReservationSchema } from "@/lib/dto/reservation.schema";
 
 export async function POST(req: NextRequest) {
-  // const { data: session } = await getSession();
+  const { data: session } = await getSession();
 
-  // if (!session?.user.id) {
-  //   return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
-  // }
+  if (!session?.user.id) {
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  }
 
-  // const userId = session.user.id;
-	const userId = "2UpptCqfGFkqvSCgm8fxz09OSzCSzzIv";
+  const userId = session.user.id;
 
-  // 2. Parse request body
-  const { courtId, timeSlotId, date } = await req.json();
+  const body = await req.json();
+  const parsed = ReservationSchema.omit({ userId: true }).safeParse(body);
 
-  if (!courtId || !timeSlotId || !date) {
+  if (!parsed.success) {
     return NextResponse.json(
-      { success: false, message: "Missing required fields" },
+      { success: false, message: "Invalid request data", errors: parsed.error.format() },
       { status: 400 }
     );
   }
+
+  const { courtId, timeSlotId, date } = parsed.data;
 
   try {
     await ReservationService.reserve(
