@@ -119,7 +119,7 @@ model Reservation {
   courtId     Int
   timeSlot    TimeSlot          @relation(fields: [timeSlotId], references: [id])
   timeSlotId  Int
-  date        DateTime
+  date        DateTime          @db.Timestamp(0)
   status      ReservationStatus @default(PENDING)
   payment     Payment?
   createdAt   DateTime          @default(now())

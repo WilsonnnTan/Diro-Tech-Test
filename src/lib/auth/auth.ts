@@ -22,7 +22,10 @@ export const auth = betterAuth({
   session: {
     cookieCache: {
       enabled: true,
-      maxAge: 5 * 60,
+      maxAge: 30 * 60,
+      refreshCache: {
+        updateAge: 5 * 60 // Refresh when 300 seconds remain before expiry
+      }
     },
   },
 });

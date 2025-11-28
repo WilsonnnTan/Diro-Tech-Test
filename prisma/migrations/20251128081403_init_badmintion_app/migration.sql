@@ -30,7 +30,7 @@ CREATE TABLE "reservation" (
     "userId" TEXT NOT NULL,
     "courtId" INTEGER NOT NULL,
     "timeSlotId" INTEGER NOT NULL,
-    "date" TIMESTAMP(3) NOT NULL,
+    "date" TIMESTAMP(0) NOT NULL,
     "status" "ReservationStatus" NOT NULL DEFAULT 'PENDING',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
