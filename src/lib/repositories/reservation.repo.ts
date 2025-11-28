@@ -44,7 +44,7 @@ export const ReservationRepository = {
       data: {
         id: uuidv4(),
         ...data,
-        status: "PENDING",
+        status: "CONFIRMED",
       },
     });
   },

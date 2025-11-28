@@ -16,6 +16,7 @@ export async function GET(req: NextRequest,  ctx: { params: Promise<{ courtId: n
 
   const parsedCourtId = Number(courtId);
   if (isNaN(parsedCourtId)) {
+    console.error("courtId not valid")
     return NextResponse.json(
       { success: false, message: "Invalid courtId" },
       { status: 400 }
@@ -25,6 +26,7 @@ export async function GET(req: NextRequest,  ctx: { params: Promise<{ courtId: n
   // Validate date
   const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
   if (!dateRegex.test(date)) {
+    console.error("date not valid")
     return NextResponse.json(
       {
         success: false,
