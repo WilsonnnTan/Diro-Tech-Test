@@ -3,11 +3,11 @@ import { getSession } from "@/lib/auth/auth-client";
 import { TimeSlotService } from "@/lib/services/timeslot.service";
 
 export async function GET(req: NextRequest,  ctx: { params: Promise<{ courtId: number, date: string }> }) {
-	// const { data: session } = await getSession();
+  const { data: session } = await getSession();
 
-  // if (!session?.user.id) {
-  //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  // }
+  if (!session?.user.id) {
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  }
 
 	const { courtId, date } = await ctx.params;
 
