@@ -29,4 +29,26 @@ export const ReservationService = {
     });
 	},
 
+ 	async reserve(userId: string, courtId: number, timeSlotId: number, date: string) {
+    const reservationDate = new Date(date);
+
+    // check if timeslot already reserved
+    const existing = await ReservationRepository.findReservationByCourtTimeDate(
+      courtId,
+      timeSlotId,
+      reservationDate
+    );
+
+    if (existing) {
+      throw new Error("This timeslot is already reserved");
+    }
+
+    // create reservation
+    return ReservationRepository.createReservation({
+      userId,
+      courtId,
+      timeSlotId,
+      date: reservationDate,
+    });
+  },
 }
