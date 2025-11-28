@@ -12,6 +12,14 @@ export const ReservationRepository = {
         court: true,
         timeSlot: true
       }
-    })
-  }
-}
+    });
+  },
+
+  async findAllReservationByUserId(userId: string): Promise<Reservation[]> {
+    return prisma.reservation.findMany({
+      where: {
+        userId: userId,
+      }
+    });
+  },
+};

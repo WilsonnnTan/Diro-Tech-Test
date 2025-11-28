@@ -30,7 +30,7 @@ export const PaymentSchema = z.object({
 // Reservation Schema
 export const ReservationSchema = z.object({
   id: z.uuid().optional(),
-  userId: z.string().uuid(),
+  userId: z.uuid(),
   courtId: z.number(),
   timeSlotId: z.number(),
   date: z.string(), // ISO string
