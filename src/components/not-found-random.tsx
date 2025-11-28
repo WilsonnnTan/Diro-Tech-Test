@@ -15,7 +15,7 @@ export default function RandomNotFound({ messages }: RandomMessageProps) {
     }, [messages]);
 
     return (
-        <span className="text-xl font-light tracking-wide text-neutral-600 dark:text-neutral-400">
+        <span className="text-xl font-light tracking-wide text-neutral-50">
             {message}
         </span>
     );

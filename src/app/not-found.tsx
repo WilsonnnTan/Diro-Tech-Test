@@ -18,18 +18,15 @@ export default function NotFound() {
 
     return (
         <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden font-geist">
-            <div className="absolute inset-0 -z-10 h-full w-full">
-                <div className="absolute inset-0 bg-neutral-100 bg-[radial-gradient(ellipse_at_center,transparent_40%,theme(colors.neutral.100))] dark:bg-neutral-900 dark:bg-[radial-gradient(ellipse_at_center,transparent_40%,theme(colors.neutral.900))]"></div>
-                <div
-                    className="absolute inset-0 bg-[radial-gradient(theme(colors.neutral.300)_1px,transparent_1px)] dark:bg-[radial-gradient(theme(colors.neutral.700)_1px,transparent_1px)] bg-size-[20px_20px]"
-                ></div>
-            </div>
+            <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom_right,var(--color-midnight-900),var(--color-midnight-900),var(--color-midnight-700))]" />
+            <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_bottom_left,var(--color-mint-glow),transparent_60%)]" />
+
 
             <div className="relative z-10 flex items-center space-x-4">
-                <span className="text-3xl font-bold tracking-tighter text-neutral-800 dark:text-white">
+                <span className="text-3xl font-bold tracking-tighter text-white">
                     404
                 </span>
-                <div className="h-8 w-px rotate-12 bg-neutral-400 dark:bg-neutral-500"></div>
+                <div className="h-8 w-px rotate-12 bg-neutral-400"></div>
                 
                 <RandomNotFound messages={notFoundMessages} />
             </div>
