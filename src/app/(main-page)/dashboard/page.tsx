@@ -98,7 +98,7 @@ export default function Dashboard() {
             </Card>
           </CardContent>
           <CardFooter className="flex justify-end gap-2">
-            <Link href="/order">
+            <Link href="/reservations">
               <Button className="bg-neutral-200 text-neutral-950 hover:bg-neutral-500">
                 Make a Reservation
               </Button>
